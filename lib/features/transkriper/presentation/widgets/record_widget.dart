@@ -85,7 +85,7 @@
 //     log(player.state.name);
 //                     },
 //                     icon: const Icon(
-//                      Icons.play_arrow 
+//                      Icons.play_arrow
 //                     )))
 //           ],
 //         )
@@ -95,11 +95,12 @@
 // }
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:transkriptor/features/transkriper/presentation/blocs/bloc.dart';
+import 'package:transkriptor/features/transkriper/presentation/blocs/state.dart';
 
 import 'audio_player.dart';
 import 'record_player.dart';
-
 
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
@@ -120,19 +121,38 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return 
-      SizedBox(height: 200,
-        child: Scaffold(backgroundColor: Colors.transparent,
-          body: Center(
+    return SizedBox(
+      height: 300,
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        body: BlocConsumer<TranskripBloc, TranskriptState>(
+          listener: (context, state) {
+         
+          },
+          builder: (context, state) {
+            return Center(
               child: showPlayer
-                  ? Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 25),
-                      child: AudioPlayer(
-                        source: audioPath!,
-                        onDelete: () {
-                          setState(() => showPlayer = false);
-                        },
-                      ),
+                  ? Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Expanded(
+                          child: Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 25),
+                              child: AudioPlayer(
+                                source: audioPath!,
+                                onDelete: () {
+                                  setState(() => showPlayer = false);
+                                },
+                              )),
+                        ),
+                        ElevatedButton(
+                            onPressed: () {
+
+                              BlocProvider.of<TranskripBloc>(context).createTranskript(audioPath!);
+                              Navigator.pop(context);
+                            }, child: const Text('Transkript'))
+                      ],
                     )
                   : Recorder(
                       onStop: (path) {
@@ -143,10 +163,10 @@ class _MyAppState extends State<MyApp> {
                         });
                       },
                     ),
-            
-          
-              ),
+            );
+          },
         ),
-      );
+      ),
+    );
   }
 }

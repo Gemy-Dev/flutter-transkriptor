@@ -64,7 +64,6 @@ class AudioPlayerState extends State<AudioPlayer> {
     _audioPlayer.dispose();
     super.dispose();
   }
-
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
@@ -91,7 +90,7 @@ class AudioPlayerState extends State<AudioPlayer> {
                 ),
               ],
             ),
-            Text('${_duration ?? 0.0}'),
+            Text(((_duration??Duration.zero )- (_position??Duration.zero)).toString() ),
           ],
         );
       },

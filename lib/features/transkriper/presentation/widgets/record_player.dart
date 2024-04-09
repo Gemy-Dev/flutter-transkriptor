@@ -33,7 +33,7 @@ class _RecorderState extends State<Recorder> with AudioRecorderMixin {
     });
 
     _amplitudeSub = _audioRecorder
-        .onAmplitudeChanged(const Duration(milliseconds: 300))
+        .onAmplitudeChanged(const Duration(milliseconds: 100))
         .listen((amp) {
       setState(() => _amplitude = amp);
     });
@@ -134,15 +134,16 @@ class _RecorderState extends State<Recorder> with AudioRecorderMixin {
                 _buildRecordStopControl(),
                 const SizedBox(width: 20),
                 _buildPauseResumeControl(),
-                const SizedBox(width: 20),
-                _buildText(),
+             
+             
               ],
-            ),
-            if (_amplitude != null) ...[
-              const SizedBox(height: 40),
-              Text('Current: ${_amplitude?.current ?? 0.0}'),
-              Text('Max: ${_amplitude?.max ?? 0.0}'),
-            ],
+            ),   const SizedBox(height: 20),
+               _buildText(),
+            // if (_amplitude != null) ...[
+            //   const SizedBox(height: 40),
+            //   Text('Current: ${_amplitude?.current ?? 0.0}'),
+            //   Text('Max: ${_amplitude?.max ?? 0.0}'),
+            // ],
           ],
         ),
       
@@ -224,11 +225,12 @@ class _RecorderState extends State<Recorder> with AudioRecorderMixin {
 
   Widget _buildTimer() {
     final String minutes = _formatNumber(_recordDuration ~/ 60);
-    final String seconds = _formatNumber(_recordDuration % 60);
+    final String seconds = _formatNumber(_recordDuration %  60);
+   
 
     return Text(
       '$minutes : $seconds',
-      style: const TextStyle(color: Colors.red),
+      style: const TextStyle(color: Colors.grey, fontSize: 22,fontWeight: FontWeight.bold),
     );
   }
 
