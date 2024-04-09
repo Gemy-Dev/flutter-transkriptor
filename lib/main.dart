@@ -26,7 +26,7 @@ class Transkriper extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp(debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primaryColor: const Color.fromARGB(255, 162, 198, 246),
         colorScheme: ColorScheme.fromSeed(

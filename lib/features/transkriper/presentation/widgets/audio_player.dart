@@ -4,94 +4,109 @@ import 'package:audioplayers/audioplayers.dart' as ap;
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:transkriptor/core/audio_managment/audio_player.dart';
 
-class AudioPlayer extends StatefulWidget {
+class RecordPlayer extends StatefulWidget {
   /// Path from where to play recorded audio
   final String source;
 
   /// Callback when audio file should be removed
   /// Setting this to null hides the delete button
-  final VoidCallback onDelete;
+  final VoidCallback? onDelete;
 
-  const AudioPlayer({
+  const RecordPlayer({
     super.key,
     required this.source,
-    required this.onDelete,
+     this.onDelete,
   });
 
   @override
-  AudioPlayerState createState() => AudioPlayerState();
+  RecordPlayerState createState() => RecordPlayerState();
 }
 
-class AudioPlayerState extends State<AudioPlayer> {
+class RecordPlayerState extends State<RecordPlayer> {
   static const double _controlSize = 56;
   static const double _deleteBtnSize = 24;
 
-  final _audioPlayer = ap.AudioPlayer()..setReleaseMode(ReleaseMode.stop);
-  late StreamSubscription<void> _playerStateChangedSubscription;
-  late StreamSubscription<Duration?> _durationChangedSubscription;
-  late StreamSubscription<Duration> _positionChangedSubscription;
-  Duration? _position;
-  Duration? _duration;
-
+  // final _audioPlayer = ap.AudioPlayer()..setReleaseMode(ReleaseMode.stop);
+  // late StreamSubscription<void> _playerStateChangedSubscription;
+  // late StreamSubscription<Duration?> _durationChangedSubscription;
+  // late StreamSubscription<Duration> _positionChangedSubscription;
+  // Duration? _position;
+  // Duration? _duration;
+  String get _source=>widget.source;
+late AppAudioPlayer _audioPlayer;
   @override
   void initState() {
-    _playerStateChangedSubscription =
-        _audioPlayer.onPlayerComplete.listen((state) async {
-      await stop();
-    });
-    _positionChangedSubscription = _audioPlayer.onPositionChanged.listen(
-      (position) => setState(() {
-        _position = position;
-      }),
-    );
-    _durationChangedSubscription = _audioPlayer.onDurationChanged.listen(
-      (duration) => setState(() {
-        _duration = duration;
-      }),
-    );
+    _audioPlayer=AppAudioPlayer();
+    _audioPlayer.init(_source);
+    // _playerStateChangedSubscription =
+    //     _audioPlayer.onPlayerComplete.listen((state) async {
+    //   await stop();
+    // });
+    // _positionChangedSubscription = _audioPlayer.onPositionChanged.listen(
+    //   (position) => setState(() {
+    //     _position = position;
+    //   }),
+    // );
+    // _durationChangedSubscription = _audioPlayer.onDurationChanged.listen(
+    //   (duration) => setState(() {
+    //     _duration = duration;
+    //   }),
+    // );
 
-    _audioPlayer.setSource(_source);
+    // _audioPlayer.setSource(_source);
 
     super.initState();
   }
 
   @override
   void dispose() {
-    _playerStateChangedSubscription.cancel();
-    _positionChangedSubscription.cancel();
-    _durationChangedSubscription.cancel();
     _audioPlayer.dispose();
+    // _playerStateChangedSubscription.cancel();
+    // _positionChangedSubscription.cancel();
+    // _durationChangedSubscription.cancel();
+  //  _audioPlayer.dispose();
     super.dispose();
   }
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        return Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Row(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                _buildControl(),
-                _buildSlider(constraints.maxWidth),
-                IconButton(
-                  icon: const Icon(Icons.delete,
-                      color: Color(0xFF73748D), size: _deleteBtnSize),
-                  onPressed: () {
-                    if (_audioPlayer.state == ap.PlayerState.playing) {
-                      stop().then((value) => widget.onDelete());
-                    } else {
-                      widget.onDelete();
-                    }
-                  },
+        return ListenableBuilder(listenable: _audioPlayer,
+          builder: (context,_) {
+            return Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Row(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    _buildControl(),
+                    _buildSlider(constraints.maxWidth),
+                if(widget.onDelete!=null)     IconButton(
+                      icon: const Icon(Icons.delete,
+                          color: Color(0xFF73748D), size: _deleteBtnSize),
+                      onPressed: () {
+                        if (_audioPlayer.state == ap.PlayerState.playing) {
+                          stop().then((value) {
+                     
+                         widget.onDelete!();
+                         
+                          });
+                        } else {
+                     
+                         widget.onDelete!();
+                        
+                        }
+                      },
+                    ),
+                  ],
                 ),
+                Text(((_audioPlayer.duration??Duration.zero )- (_audioPlayer.position??Duration.zero)).toString() ),
               ],
-            ),
-            Text(((_duration??Duration.zero )- (_position??Duration.zero)).toString() ),
-          ],
+            );
+          }
         );
       },
     );
@@ -130,8 +145,8 @@ class AudioPlayerState extends State<AudioPlayer> {
 
   Widget _buildSlider(double widgetWidth) {
     bool canSetValue = false;
-    final duration = _duration;
-    final position = _position;
+    final duration = _audioPlayer.duration;
+    final position = _audioPlayer.position;
 
     if (duration != null && position != null) {
       canSetValue = position.inMilliseconds > 0;
@@ -159,7 +174,7 @@ class AudioPlayerState extends State<AudioPlayer> {
     );
   }
 
-  Future<void> play() => _audioPlayer.play(_source);
+  Future<void> play() => _audioPlayer.play();
 
   Future<void> pause() async {
     await _audioPlayer.pause();
@@ -171,6 +186,5 @@ class AudioPlayerState extends State<AudioPlayer> {
     setState(() {});
   }
 
-  Source get _source =>
-      kIsWeb ? ap.UrlSource(widget.source) : ap.DeviceFileSource(widget.source);
+ 
 }

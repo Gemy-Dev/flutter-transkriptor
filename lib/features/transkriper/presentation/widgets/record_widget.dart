@@ -93,6 +93,8 @@
 //     );
 //   }
 // }
+import 'dart:io';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -139,9 +141,10 @@ class _MyAppState extends State<MyApp> {
                           child: Padding(
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 25),
-                              child: AudioPlayer(
+                              child: RecordPlayer(
                                 source: audioPath!,
-                                onDelete: () {
+                                onDelete: ()async {
+                               if(audioPath!=null){await   File(audioPath!).delete();}
                                   setState(() => showPlayer = false);
                                 },
                               )),
