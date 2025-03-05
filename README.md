@@ -10,7 +10,7 @@ Here are some screenshots showcasing the app's interface and functionality:
 
 <!-- Add your images here - Example: -->
 ![Home Screen](Screenshot_20250305_033314.jpg)
-![Transcription Screen](https://via.placeholder.com/600x400?text=Transcription+Screen)
+![Transcription Screen](Screenshot_20250305_033944.jpg)
 
 ---
 
