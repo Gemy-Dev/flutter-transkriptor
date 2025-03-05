@@ -1,4 +1,3 @@
-import 'dart:developer';
 
 import 'package:dart_openai/dart_openai.dart';
 import 'package:flutter/material.dart';

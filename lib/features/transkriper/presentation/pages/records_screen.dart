@@ -36,7 +36,10 @@ class _RecordsState extends State<Records> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColor.bg,
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: Text('Recordes'),
+        centerTitle: true,
+      ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: FutureBuilder(
@@ -72,6 +75,4 @@ class _RecordsState extends State<Records> {
       ),
     );
   }
-
-  void _play(String source) {}
 }

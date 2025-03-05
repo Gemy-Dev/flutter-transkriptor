@@ -20,18 +20,19 @@ class Transkripts extends StatelessWidget {
         color: const Color.fromARGB(255, 232, 242, 253),
         child: BlocBuilder<TranskripBloc, TranskriptState>(
           builder: (context, state) {
-            if(state is Loaded<List<Transkript>>) {
-              final trranskripts=state.transkript.reversed.toList();
+            if (state is Loaded<List<Transkript>>) {
+              final trranskripts = state.transkript.reversed.toList();
               return ListView.builder(
-              itemCount: trranskripts.length,
-              itemBuilder: (_, index) => _ScriptWidget(
-                item: trranskripts[index],
-              ),
-            );
+                itemCount: trranskripts.length,
+                itemBuilder: (_, index) => _ScriptWidget(
+                  item: trranskripts[index],
+                ),
+              );
             } else {
-              return const Center(child: Icon(Icons.error),);
+              return const Center(
+                child: Icon(Icons.error),
+              );
             }
-           
           },
         ),
       ),
@@ -53,7 +54,7 @@ class _ScriptWidget extends StatelessWidget {
         borderRadius: BorderRadius.circular(10),
         shadowColor: Colors.grey.shade300,
         child: ListTile(
-          onTap:()=> _goToRead(context),
+          onTap: () => _goToRead(context),
           contentPadding:
               const EdgeInsets.symmetric(vertical: 5, horizontal: 20),
           tileColor: Colors.white,
@@ -70,9 +71,12 @@ class _ScriptWidget extends StatelessWidget {
               color: Colors.blue,
             ),
           ),
-          title: Text(
-            item.text.substring(0,70),
-            style: context.bodyMedium,
+          title: SizedBox(
+            height: 18,
+            child: Text(
+              item.text,
+              style: context.bodyMedium!,
+            ),
           ),
           subtitle: Padding(
             padding: const EdgeInsets.all(8.0),
@@ -90,20 +94,3 @@ class _ScriptWidget extends StatelessWidget {
     Navigator.pushNamed(context, viewTranskript, arguments: item);
   }
 }
-
-List<Transkript> scripts = [
-  const Transkript(
-      text: 'sdlkjsdkfjsdlfjsdkfjsd;', timeStamp: '5525-225-225-2'),
-  const Transkript(
-      text: 'sdlkjsdkfjsdlfjsdkfjsd;', timeStamp: '5525-225-225-2'),
-  const Transkript(
-      text: 'sdlkjsdkfjsdlfjsdkfjsd;', timeStamp: '5525-225-225-2'),
-  const Transkript(
-      text: 'sdlkjsdkfjsdlfjsdkfjsd;', timeStamp: '5525-225-225-2'),
-  const Transkript(
-      text: 'sdlkjsdkfjsdlfjsdkfjsd;', timeStamp: '5525-225-225-2'),
-  const Transkript(
-      text: 'sdlkjsdkfjsdlfjsdkfjsd;', timeStamp: '5525-225-225-2'),
-  const Transkript(
-      text: 'sdlkjsdkfjsdlfjsdkfjsd;', timeStamp: '5525-225-225-2'),
-];

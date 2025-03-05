@@ -29,26 +29,26 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   audio_session: ^0.1.19
-  bloc: ^8.1.4
+  bloc: ^9.0.0
   connectivity_plus: ^6.0.1
   cupertino_icons: ^1.0.2
   dart_openai: ^5.1.0
   equatable: ^2.0.5
-  file_picker: ^8.0.0+1
+  file_picker: ^9.0.2
   flutter:
     sdk: flutter
-  flutter_bloc: ^8.1.5
+  flutter_bloc: 9.1.0
   flutter_dotenv: ^5.1.0
   flutter_sound: ^9.2.13
-  get_it: ^7.6.7
-  intl: ^0.19.0
+  get_it: ^8.0.3
+  intl: ^0.20.2
   path: ^1.8.3
   permission_handler: ^11.3.1
   sqflite: ^2.3.2
   path_provider: ^2.0.2
   just_audio:
   record: ^5.0.5
-  audioplayers: ^5.2.1
+  audioplayers: ^6.2.0
 
 
 

@@ -33,7 +33,8 @@ class LocalDatabaseImpl implements LocalDatabase {
 create table $tableName ( 
     $columnId integer primary key autoincrement, 
     $columnText text not null,
-    $columnTime text not null
+    $audioPath text not null,
+    $columnTime text not null,
    )
   ''');
   }
@@ -81,6 +82,7 @@ create table $tableName (
         await open();
       } else {
         await db!.delete(tableName, where: '$columnId = ?', whereArgs: [id]);
+        
       }
   
     } catch (e) {
@@ -96,5 +98,6 @@ create table $tableName (
 const String tableName = 'transkripts';
 const String columnId = '_id';
 const String columnText = 'text';
+const String audioPath = 'audio_path';
 const String columnTime = 'timeStamp';
 

@@ -28,34 +28,14 @@ class RecordPlayerState extends State<RecordPlayer> {
   static const double _controlSize = 56;
   static const double _deleteBtnSize = 24;
 
-  // final _audioPlayer = ap.AudioPlayer()..setReleaseMode(ReleaseMode.stop);
-  // late StreamSubscription<void> _playerStateChangedSubscription;
-  // late StreamSubscription<Duration?> _durationChangedSubscription;
-  // late StreamSubscription<Duration> _positionChangedSubscription;
-  // Duration? _position;
-  // Duration? _duration;
+
   String get _source=>widget.source;
 late AppAudioPlayer _audioPlayer;
   @override
   void initState() {
     _audioPlayer=AppAudioPlayer();
     _audioPlayer.init(_source);
-    // _playerStateChangedSubscription =
-    //     _audioPlayer.onPlayerComplete.listen((state) async {
-    //   await stop();
-    // });
-    // _positionChangedSubscription = _audioPlayer.onPositionChanged.listen(
-    //   (position) => setState(() {
-    //     _position = position;
-    //   }),
-    // );
-    // _durationChangedSubscription = _audioPlayer.onDurationChanged.listen(
-    //   (duration) => setState(() {
-    //     _duration = duration;
-    //   }),
-    // );
-
-    // _audioPlayer.setSource(_source);
+   
 
     super.initState();
   }
@@ -63,10 +43,7 @@ late AppAudioPlayer _audioPlayer;
   @override
   void dispose() {
     _audioPlayer.dispose();
-    // _playerStateChangedSubscription.cancel();
-    // _positionChangedSubscription.cancel();
-    // _durationChangedSubscription.cancel();
-  //  _audioPlayer.dispose();
+  
     super.dispose();
   }
   @override

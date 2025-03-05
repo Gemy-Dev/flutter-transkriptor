@@ -1,0 +1,2 @@
+/Users/gamalabdelnasser/Programming/flutterProject/transkriptor/android/app/.cxx/Debug/xb3m3d3x/armeabi-v7a/CMakeFiles/edit_cache.dir
+/Users/gamalabdelnasser/Programming/flutterProject/transkriptor/android/app/.cxx/Debug/xb3m3d3x/armeabi-v7a/CMakeFiles/rebuild_cache.dir

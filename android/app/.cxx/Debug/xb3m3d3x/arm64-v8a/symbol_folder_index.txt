@@ -1,0 +1,1 @@
+/Users/gamalabdelnasser/Programming/flutterProject/transkriptor/build/app/intermediates/cxx/Debug/xb3m3d3x/obj/arm64-v8a

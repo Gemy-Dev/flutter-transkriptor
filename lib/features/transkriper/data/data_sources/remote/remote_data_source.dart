@@ -4,7 +4,6 @@ import 'dart:io';
 
 import 'package:dart_openai/dart_openai.dart';
 import 'package:transkriptor/core/errors/exceptions.dart';
-import 'package:transkriptor/features/transkriper/data/models/transkript_model.dart';
 
 abstract class RemoteDataSource{
 Future<String> createTranscription(String path);
