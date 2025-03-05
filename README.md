@@ -9,7 +9,7 @@ Welcome to **Transkriptor**, a simple and powerful speech-to-text application th
 Here are some screenshots showcasing the app's interface and functionality:
 
 <!-- Add your images here - Example: -->
-![Home Screen]([https://via.placeholder.com](https://github.com/Gemy-Dev/flutter-transkriptor/blob/main/Screenshot_20250305_033314.jpg?raw=true)/600x400?text=Home+Screen)
+![Home Screen]([Screenshot_20250305_033314.jpg)
 ![Transcription Screen](https://via.placeholder.com/600x400?text=Transcription+Screen)
 
 ---
