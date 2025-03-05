@@ -4,15 +4,6 @@ Welcome to **Transkriptor**, a simple and powerful speech-to-text application th
 
 ---
 
-## 📸 Screenshots
-
-Here are some screenshots showcasing the app's interface and functionality:
-
-<!-- Add your images here - Example: -->
-![Home Screen](Screenshot_20250305_033314.jpg)
-![Transcription Screen](Screenshot_20250305_033944.jpg)
-
----
 
 ## ⚙️ Configuration
 
@@ -79,5 +70,15 @@ To run the project locally, follow these steps:
     ```bash
     flutter run
     ```
+
+---
+
+## 📸 Screenshots
+
+Here are some screenshots showcasing the app's interface and functionality:
+
+<!-- Add your images here - Example: -->
+![Home Screen](Screenshot_20250305_033314.jpg)
+![Transcription Screen](Screenshot_20250305_033944.jpg)
 
 ---
