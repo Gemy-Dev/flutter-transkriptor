@@ -81,10 +81,3 @@ To run the project locally, follow these steps:
     ```
 
 ---
-
-## 📷 Adding Images
-
-You can upload actual screenshots to your GitHub repository, then replace the placeholder images in this README with:
-
-```markdown
-![Screenshot Description](Screenshot_20250305_033742.jpg)
