@@ -63,7 +63,7 @@ To run the project locally, follow these steps:
 
 1. Clone the repository:
     ```bash
-    git clone https://github.com/your-username/transkriptor.git
+    git clone https://github.com/Gemy-Dev/flutter-transkriptor.git
     ```
 2. Navigate to the project folder:
     ```bash
