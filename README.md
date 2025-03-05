@@ -87,4 +87,4 @@ To run the project locally, follow these steps:
 You can upload actual screenshots to your GitHub repository, then replace the placeholder images in this README with:
 
 ```markdown
-![Screenshot Description](https://raw.githubusercontent.com/your-username/transkriptor/main/assets/screenshot1.png)
+![Screenshot Description](Screenshot_20250305_033742.jpg)
